@@ -15,12 +15,7 @@ createDocumentRoutes(router);
 app.use('/', router);
 
 app.use((req, res) => {
-  res.send('tis a shame, tis an error, what you seek, was not found. Sorry. 404');
-});
-
-
-app.listen(PORT, () => {
-  logger.info(`app started on port ${PORT}`);
+  res.sendStatus(400);
 });
 
 export default app;

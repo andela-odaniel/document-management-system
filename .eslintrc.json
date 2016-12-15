@@ -1,6 +1,7 @@
 {
   "env": {
     "shared-node-browser": true,
+    "mocha": true,
     "jest": true
   },
   "parser": "babel-eslint",

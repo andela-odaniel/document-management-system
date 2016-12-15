@@ -7,6 +7,6 @@
  */
 export default function (router) {
   router.get('/documents', (req, res) => {
-    res.send(JSON.stringify('all the documents'));
+    res.send('all the documents');
   });
 }

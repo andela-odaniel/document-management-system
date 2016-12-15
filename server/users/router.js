@@ -7,6 +7,6 @@
  */
 export default function (router) {
   router.get('/users', (req, res) => {
-    res.send(JSON.stringify('all the users'));
+    res.send('all the users');
   });
 }
