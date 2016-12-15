@@ -4,5 +4,5 @@
       "engine": "eslint"
     }
   },
-  "test": ["./server/tests/**"]
+  "test": ["**/tests/**"]
 }
