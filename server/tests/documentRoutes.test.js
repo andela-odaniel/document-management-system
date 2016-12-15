@@ -1,7 +1,6 @@
 import supertest from 'supertest';
 import app from '../../server';
 
-
 describe('Document Routes', () => {
   it('GETs the documents home route', (done) => {
     supertest(app)
