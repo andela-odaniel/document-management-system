@@ -1,6 +1,6 @@
 import express from 'express';
-import createUserRoutes from './server/users/router';
-import createDocumentRoutes from './server/documents/router';
+import createUserRoutes from './server/routers/usersRouter';
+import createDocumentRoutes from './server/routers/documentsRouter';
 
 
 const app = express();
