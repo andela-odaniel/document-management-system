@@ -1,3 +1,5 @@
-import TableManager from '../models/manageTables';
+import { createTables } from '../database/manageTables';
 
-TableManager.createTables();
+export default (done) => {
+  createTables(done);
+};

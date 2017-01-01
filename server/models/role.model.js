@@ -1,6 +1,5 @@
 import Sequelize from 'sequelize';
-import sequelizeInstance from './connection';
-
+import { sequelizeInstance } from '../database/connection';
 
 const Role = sequelizeInstance.define('Role', {
   title: {

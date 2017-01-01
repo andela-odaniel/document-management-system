@@ -1,3 +1,5 @@
-import TableManager from '../models/manageTables';
+import { dropTables } from '../database/manageTables';
 
-TableManager.dropTables();
+export default (done) => {
+  dropTables(done);
+};

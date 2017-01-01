@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import sequelizeInstance from './connection';
+import { sequelizeInstance } from '../database/connection';
 import Role from './role.model';
 import User from './user.model';
 
