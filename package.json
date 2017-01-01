@@ -10,7 +10,7 @@
     "drop-tables": "node server/scripts/droptables.js",
     "start-dev": "node_modules/.bin/nodemon index.js --exec node_modules/.bin/babel-node --presets es2015 | node_modules/.bin/bunyan",
     "test-mocha": "node_modules/.bin/mocha --compilers js:babel-core/register server/tests",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest --forceExit"
   },
   "jest": {
     "verbose": true,

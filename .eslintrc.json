@@ -15,6 +15,7 @@
     "sourceType": "module"
   },
   "extends": "airbnb",
+  "plugins": ["import"],
   "rules": {
     "one-var": 0,
     "one-var-declaration-per-line": 0,
