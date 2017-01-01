@@ -1,6 +1,10 @@
 language: node_js
 node_js:
     - "node"
+services:
+  - postgresql
 script: npm test
-before_script: npm install
+before_script: 
+    - npm install
+    - psql -c 'create database dms_test;' -U postgres
 after_script: cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
