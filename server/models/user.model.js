@@ -1,10 +1,7 @@
 import Sequelize from 'sequelize';
-import Bcrypt from 'bcrypt';
+import Bcrypt from 'bcrypt-nodejs';
 import { sequelizeInstance } from '../database/connection';
 import Role from './role.model';
-
-const SALT_ROUNDS = 10;
-
 
 const User = sequelizeInstance.define('User', {
   username: {
@@ -22,7 +19,7 @@ const User = sequelizeInstance.define('User', {
       if (!value) { throw new Error('You cannot save the user without a password'); }
       this.setDataValue('password', value);
       // fat arrow syntax would reassign the scope of "this"
-      Bcrypt.hash(value, SALT_ROUNDS, function (err, hash) {
+      Bcrypt.hash(value, null, null, function (err, hash) {
         if (err) { throw new Error('An error occured saving the user'); }
         this.setDataValue('password_hash', hash);
       });
