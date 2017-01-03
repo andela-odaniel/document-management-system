@@ -12,13 +12,4 @@ describe('User Routes', () => {
         done();
       });
   });
-
-  it('should fail for non existing routes', (done) => {
-    supertest(app)
-      .get('/not-existent')
-      .end((err, res) => {
-        expect(res.statusCode).toBe(400);
-        done();
-      });
-  });
 });

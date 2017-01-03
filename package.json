@@ -6,11 +6,11 @@
   "scripts": {
     "create-dbs": "sh server/scripts/createdb.sh",
     "drop-dbs": "sh server/scripts/dropdb.sh",
-    "create-tables": "node server/scripts/createtables.js",
-    "drop-tables": "node server/scripts/droptables.js",
+    "create-tables": "node_modules/.bin/babel-node server/scripts/createtables.js --presets es2015 ",
+    "drop-tables": "node_modules/.bin/babel-node server/scripts/droptables.js --presets es2015 ",
     "start-dev": "node_modules/.bin/nodemon index.js --exec node_modules/.bin/babel-node --presets es2015 | node_modules/.bin/bunyan",
     "test-mocha": "node_modules/.bin/mocha --compilers js:babel-core/register server/tests",
-    "test": "NODE_ENV=test jest --forceExit"
+    "test": "NODE_ENV=test jest --runInBand --forceExit"
   },
   "jest": {
     "verbose": true,
@@ -35,6 +35,7 @@
   "homepage": "https://github.com/andela-odaniel/document-management-system#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
     "bunyan": "^1.8.5",
     "chai": "^3.5.0",
     "dotenv": "^2.0.0",

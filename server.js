@@ -1,13 +1,13 @@
-import express from 'express';
-import createUserRoutes from './server/routers/usersRouter';
-import createDocumentRoutes from './server/routers/documentsRouter';
+import Express from 'express';
+import BodyParser from 'body-parser';
+import routes from './server/routers';
 
+const app = Express();
+const router = Express.Router();
 
-const app = express();
-const router = express.Router();
-
-createUserRoutes(router);
-createDocumentRoutes(router);
+routes(router);
+app.use(BodyParser.urlencoded({ extended: false }));
+app.use(BodyParser.json());
 
 app.use('/', router);
 
