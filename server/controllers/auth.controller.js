@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import Role from '../models/role.model';
 
 dotenv.config();
 
@@ -13,9 +14,8 @@ const JWT_SECRET = process.env.SECRET;
  * @param {any} next
  * @returns
  */
-export function authorize(req, res, next) {
+export function isAuthorized(req, res, next) {
   const token = req.headers.authorization;
-
   if (token) {
     jwt.verify(token, JWT_SECRET, (err, decoded) => {
       if (err) {
@@ -42,12 +42,10 @@ export function authorize(req, res, next) {
  * @returns
  */
 export function isAdmin(req, res, next) {
-  const role = req.decoded.role;
-  if (role && role === 'admin') {
+  if (req.decoded.role === 'admin') {
     return next();
   }
-
   return res.status(403).json({
-    message: 'You are not authorized to view the resource'
+    message: 'You are not authorized to access the resource'
   });
 }
