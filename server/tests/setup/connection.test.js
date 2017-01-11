@@ -16,7 +16,6 @@ describe('Test the database connection', () => {
         done();
       })
       .catch((err) => {
-        if (err) console.log(err); // eslint-disable-line no-console
         expect(err).toBeUndefined();
         done();
       });

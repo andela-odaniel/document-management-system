@@ -9,28 +9,23 @@ const User = sequelizeInstance.define('User', {
     allowNull: false,
     unique: true
   },
+  password: {
+    type: Sequelize.VIRTUAL,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [6, 255],
+        msg: 'Passwords must be at least six characters'
+      }
+    },
+    set(value) {
+      this.setDataValue('password', value);
+      this.setDataValue('password_hash', Bcrypt.hashSync(value));
+    },
+  },
   password_hash: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  password: {
-    type: Sequelize.VIRTUAL,
-    set: (value) => {
-      if (!value) { throw new Error('You cannot save the user without a password'); }
-      this.setDataValue('password', value);
-      // fat arrow syntax would reassign the scope of "this"
-      Bcrypt.hash(value, null, null, function (err, hash) {
-        if (err) { throw new Error('An error occured saving the user'); }
-        this.setDataValue('password_hash', hash);
-      });
-    },
-    validate: {
-      lengthCheck: (value) => {
-        if (value.lenth < 6) {
-          throw new Error('Passwords must be at least 6 characters long');
-        }
-      }
-    }
   },
   firstName: {
     type: Sequelize.STRING,
@@ -40,12 +35,18 @@ const User = sequelizeInstance.define('User', {
     type: Sequelize.STRING,
     allowNull: false
   },
+}, {
+  instanceMethods: {
+    authenticate: function (password) { // eslint-disable-line object-shorthand
+      return Bcrypt.compareSync(password, this.password_hash);
+    }
+  }
 });
 
 User.belongsTo(Role, {
   as: 'role',
   foreignKey: {
-    allowNull: false
+    allowNull: true
   }
 });
 

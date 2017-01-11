@@ -2,35 +2,33 @@ const userFixtures = [
   {
     username: 'thesandman',
     password: 'morpheus',
-    role: 'admin',
+    roleId: '1',
     firstName: 'John',
     lastName: 'Doe'
   },
   {
     username: 'raiden',
     password: 'mkultra',
-    role: 'regular',
+    roleId: '2',
     firstName: 'Raiden',
     lastName: 'Itaka'
   },
   {
     username: 'goku',
-    password: 'supersaiyan',
-    role: 'regular',
+    roleId: '2',
     firstName: 'Kim',
     lastName: 'Possible'
   },
   {
     username: 'naruto',
-    password: 'warewareno',
-    role: 'regular',
+    password: 'ware',
+    roleId: '2',
     firstName: 'Yuei',
     lastName: 'Dillion'
   },
   {
     username: 'zuko',
     password: 'whitelotus',
-    role: 'regular',
     firstName: 'Ian',
     lastName: 'Gomel'
   }
