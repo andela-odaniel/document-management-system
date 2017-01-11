@@ -1,12 +1,35 @@
-/**
- * Exports the User Routes module
- * Adds user routes to the app instance
- * @export
- * @param {any} router
- * @returns {any} the router object with the new routes
- */
-export default function (router) {
-  router.get('/users', (req, res) => {
-    res.send('all the users');
-  });
-}
+import UserController from '../controllers/user.controller';
+import { isAuthorized, isAdmin } from '../controllers/auth.controller';
+
+
+const UserRouter = (router) => {
+  router
+    .route('/users/:id')
+    .get(isAuthorized, UserController.get);
+
+  router
+    .route('/users')
+    .get(isAuthorized, isAdmin, UserController.getAll);
+
+  router
+    .route('/users')
+    .post(UserController.create);
+
+  router
+    .route('/users/:id')
+    .put(isAuthorized, UserController.edit);
+
+  router
+    .route('/users/:id')
+    .delete(isAuthorized, isAdmin, UserController.delete);
+
+  router
+    .route('/users/login')
+    .post(UserController.login);
+
+  router
+    .route('/users/:id/documents')
+    .get(isAuthorized, UserController.documents);
+};
+
+export default UserRouter;

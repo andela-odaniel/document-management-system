@@ -10,9 +10,11 @@ import userFixtures from './user.fixture';
 
 dotenv.config();
 
+const roleData = { 1: 'admin', 2: 'regular' };
+
 const JWT_SECRET = process.env.SECRET;
-const adminToken = jwt.sign({ id: '1', username: userFixtures[0].username, role: userFixtures[0].role }, JWT_SECRET);
-const userToken = jwt.sign({ id: '1', username: userFixtures[1].username, role: userFixtures[1].role }, JWT_SECRET);
+const adminToken = jwt.sign({ id: '1', username: userFixtures[0].username, role: roleData[userFixtures[0].roleId] }, JWT_SECRET);
+const userToken = jwt.sign({ id: '1', username: userFixtures[1].username, role: roleData[userFixtures[1].roleId] }, JWT_SECRET);
 
 describe('Role Routes', () => {
   beforeAll((done) => {
@@ -79,7 +81,7 @@ describe('Role Routes', () => {
       .delete('/roles/2')
       .set('authorization', adminToken)
       .end((err, res) => {
-        expect(res.statusCode).toBe(202);
+        expect(res.statusCode).toBe(200);
         expect(res.body.message).toBe('Role deleted successfully');
         done();
       });
