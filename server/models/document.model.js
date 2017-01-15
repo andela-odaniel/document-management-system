@@ -6,9 +6,10 @@ import User from './user.model';
 
 const Document = sequelizeInstance.define('Document', {
   access: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM,
     defaultValue: 'public',
-    allowNull: false
+    values: ['public', 'private', 'role'],
+    allowNull: false,
   },
   title: {
     type: Sequelize.STRING,

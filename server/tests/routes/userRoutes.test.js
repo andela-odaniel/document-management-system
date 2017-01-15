@@ -2,7 +2,6 @@ import supertest from 'supertest';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import app from '../../../server';
-import Role from '../../models/role.model';
 import CreateTables from '../../scripts/createtables';
 import DropTables from '../../scripts/droptables';
 import { SeedRoles } from '../../scripts/seedrolestable';
@@ -29,10 +28,6 @@ describe('User Routes', () => {
     DropTables(done);
   });
 
-  afterAll((done) => {
-    DropTables(done);
-  });
-
   it('users not should be able to access protected routes without a token', (done) => {
     supertest(app)
       .get('/users')
@@ -43,7 +38,7 @@ describe('User Routes', () => {
       });
   });
 
-  it('users not should be able to access protected routes without a wrong token', (done) => {
+  it('users not should be able to access protected routes with a wrong token', (done) => {
     supertest(app)
       .get('/users')
       .set('authorization', badToken)

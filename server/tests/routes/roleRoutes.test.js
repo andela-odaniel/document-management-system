@@ -59,7 +59,7 @@ describe('Role Routes', () => {
           .send(roleFixtures[0])
           .set('authorization', adminToken)
           .end((err, res) => {
-            expect(res.statusCode).toBe(409);
+            expect(res.statusCode).toBe(422);
             expect(res.body.message).toBe('This role already exists in the database');
             done();
           });
