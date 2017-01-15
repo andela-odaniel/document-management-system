@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import Role from '../models/role.model';
 
 dotenv.config();
 
@@ -12,7 +11,7 @@ const JWT_SECRET = process.env.SECRET;
  * @param {any} req
  * @param {any} res
  * @param {any} next
- * @returns
+ * @returns {any} res
  */
 export function isAuthorized(req, res, next) {
   const token = req.headers.authorization;
@@ -39,7 +38,7 @@ export function isAuthorized(req, res, next) {
  * @param {any} req
  * @param {any} res
  * @param {any} next
- * @returns
+ * @returns {any} res
  */
 export function isAdmin(req, res, next) {
   if (req.decoded.role === 'admin') {

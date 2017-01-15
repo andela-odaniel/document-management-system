@@ -44,7 +44,7 @@ export function create(req, res) {
     })
     .catch((err) => {
       if (err.name === 'SequelizeUniqueConstraintError') {
-        return res.status(409).json({
+        return res.status(422).json({
           message: 'This role already exists in the database'
         });
       }
@@ -61,7 +61,6 @@ export function create(req, res) {
 export function destroy(req, res) {
   Role.destroy({ where: { id: req.params.id } })
     .then((numberOfRows) => {
-      console.log('numberOfRows', numberOfRows);
       if (numberOfRows >= 1) {
         return res.status(200).send({
           message: 'Role deleted successfully'
